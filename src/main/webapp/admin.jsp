@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import = "java.sql.*" %>
@@ -71,7 +70,6 @@
 	    
 	    	
 	    
-
 	    }catch(Exception e){
 	    	
 	%>      
@@ -187,7 +185,7 @@ DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 		 <% 
 		 
 	 }
-	 else if(ishour>=iehour || ishour==iehour && ismin>=iemin ){
+	 else if(ishour>iehour && ismin>iemin || ishour==iehour && ismin>iemin ){
 		 %>
 		 <script>alert("Time duration is negative. ");</script>
 		 <% 
@@ -257,7 +255,6 @@ DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 			         {
 			        	 LocalTime startA = LocalTime.of( ishour , ismin );
 			        	 LocalTime stopA = LocalTime.of( iehour , iemin );
-
 			        	 LocalTime startB = LocalTime.of( dshour , dsmin );
 			        	 LocalTime stop2B = LocalTime.of( dehour , demin );
 			         		

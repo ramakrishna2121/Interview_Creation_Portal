@@ -18,18 +18,15 @@
 		.input-icons i {
 			position: absolute;
 		}
-
 		.input-icons {
 			width: 100%;
 			margin-bottom: 5px;
 			
 		}
-
 		.icon {
 			padding: 10px;
 			min-width: 40px;
 		}
-
 		.input-field {
 			
 		/*	padding:10px;  */
@@ -41,11 +38,12 @@
   margin-bottom: 12px;
 		}
 	</style><meta name="viewport" content="width=device-width, initial-scale=1">
+	
 <style>
+
 * {
   box-sizing: border-box;
 }
-
 #myInput {
   
   width: 100%;
@@ -55,23 +53,19 @@
   margin-bottom: 12px;
   
 }
-
 #myTable {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
   font-size: 18px;
 }
-
 #myTable th, #myTable td {
   text-align: left;
   padding: 12px;
 }
-
 #myTable tr {
   border-bottom: 1px solid #ddd;
 }
-
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
@@ -87,7 +81,7 @@
 
 
 
-<table id="myTable">
+<table id="myTable" style="overflow:auto">
   <tr class="header">
     <th style="width:8%;">Id</th>
     <th style="width:14%;">Name</th>
@@ -125,17 +119,17 @@
          ResultSet rs=st.executeQuery(qry);
        
          while(rs.next()){
-        	 String dend=rs.getString(5);
-        	 String[] arrOfetime = dend.split(":",2);
+        	 String dstart=rs.getString(4);
+        	 String[] arrOfstime = dstart.split(":",2);
         	 
-        	 int []  arrOfetime1 = new int [arrOfetime.length];
-	         for(int i=0; i<arrOfetime.length; i++) 
+        	 int []  arrOfstime1 = new int [arrOfstime.length];
+	         for(int i=0; i<arrOfstime.length; i++) 
 	         {
-	        	 arrOfetime1[i] = Integer.parseInt(arrOfetime[i]);
+	        	 arrOfstime1[i] = Integer.parseInt(arrOfstime[i]);
 	         }
-	         int ehour,emin;
-	         ehour=arrOfetime1[0];
-	         emin=arrOfetime1[1];
+	         int shour,smin;
+	         shour=arrOfstime1[0];
+	         smin=arrOfstime1[1];
 	         DateFormat cdate = new SimpleDateFormat("yyyy-MM-dd");
 	         Date date1 = new Date();
 	         String d1=cdate.format(date1);
@@ -160,7 +154,9 @@
 	         dyear=arrOfDate1[0];
 	         dmon=arrOfDate1[1];
 	         ddate1=arrOfDate1[2];
-	         if((ehour>=chour && emin>=cmin && dyear>=cyear && dmon>=cmon && ddate1>=cdate1) || (dyear>=cyear && dmon>=cmon && ddate1>cdate1) ){
+	         
+	        	 if((ddate1==cdate1 && dmon==cmon && dyear==cyear && shour>=chour && smin>cmin) || (ddate1!=cdate1)  ){
+	        		 //System.out.println("onl2");
 	        	 
 	         
          	out.println("<tr>");
@@ -181,7 +177,6 @@
          	
          	//HttpSession s=request.getSession();
          	//s.setAttribute("in",rs.getString("id"));
-
          	%>
          	</td>
          	<td><a href="update.jsp?id=<%=rs.getString("Ino")%>">Update</a></td>
@@ -189,10 +184,10 @@
          	out.println("</td>");
          	out.println("</tr>");
          	
-	         }
-         	}
+	        }
          	
-         
+         	
+         }
          out.println("</table>");
     }
     
